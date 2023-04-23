@@ -2,16 +2,12 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
     `java-platform`
+    id("maven-publish")
     id("org.springframework.boot") apply false
 }
 
-//dependencyManagement {
-//    imports {
-//        mavenBom(SpringBootPlugin.BOM_COORDINATES)
-//    }
-//}
-
 dependencies {
+    api(platform(SpringBootPlugin.BOM_COORDINATES))
     constraints {
         api(project(":core"))
         api(project(":billing"))

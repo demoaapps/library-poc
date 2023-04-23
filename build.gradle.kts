@@ -11,17 +11,12 @@ allprojects {
     }
 }
 
-subprojects {
-    apply(plugin = "io.spring.dependency-management")
-    apply(plugin = "maven-publish")
-}
-
 buildscript {
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:3.0.5")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:3.0.6")
         classpath("io.spring.gradle:dependency-management-plugin:1.1.0")
     }
 }

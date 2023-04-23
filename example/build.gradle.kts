@@ -3,6 +3,7 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 plugins {
     java
     application
+    id("io.spring.dependency-management")
     id("org.springframework.boot")
 }
 
@@ -29,13 +30,4 @@ dependencies {
 
 configurations.all {
     exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            from(components["java"])
-            artifact(tasks.bootJar)
-        }
-    }
 }

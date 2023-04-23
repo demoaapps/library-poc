@@ -2,6 +2,8 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
     `java-library`
+    id("maven-publish")
+    id("io.spring.dependency-management")
     id("org.springframework.boot") apply false
 }
 
