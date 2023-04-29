@@ -24,6 +24,7 @@ dependencyManagement {
 dependencies {
     api("org.springframework.boot:spring-boot-starter-actuator")
     api("org.springframework.boot:spring-boot-starter-webflux")
+    api("org.springframework.boot:spring-boot-starter-validation")
 
 
     compileOnly("org.projectlombok:lombok")
