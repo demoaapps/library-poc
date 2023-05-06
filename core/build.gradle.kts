@@ -1,10 +1,6 @@
-import org.springframework.boot.gradle.plugin.SpringBootPlugin
-
 plugins {
     `java-library`
-    id("maven-publish")
-    id("io.spring.dependency-management")
-    id("org.springframework.boot") apply false
+    `maven-publish`
 }
 
 configurations {
@@ -15,21 +11,17 @@ configurations {
 
 java.sourceCompatibility = JavaVersion.VERSION_17
 
-dependencyManagement {
-    imports {
-        mavenBom(SpringBootPlugin.BOM_COORDINATES)
-    }
-}
-
 dependencies {
+    api(platform(project(":bom")))
     api("org.springframework.boot:spring-boot-starter-actuator")
+    api("org.springframework.boot:spring-boot-starter-web")
     api("org.springframework.boot:spring-boot-starter-webflux")
     api("org.springframework.boot:spring-boot-starter-validation")
 
 
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-    annotationProcessor("org.projectlombok:lombok")
+    compileOnly("org.projectlombok:lombok:${property("lombokVersion")}")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:${property("springBootVersion")}")
+    annotationProcessor("org.projectlombok:lombok:${property("lombokVersion")}")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
 }
@@ -38,14 +30,6 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             from(components["java"])
-            versionMapping {
-                usage("java-api") {
-                    fromResolutionOf("runtimeClasspath")
-                }
-                usage("java-runtime") {
-                    fromResolutionResult()
-                }
-            }
         }
     }
 }
