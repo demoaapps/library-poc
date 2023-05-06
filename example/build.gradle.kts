@@ -2,7 +2,6 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     java
-    application
     `maven-publish`
     id("org.springframework.boot")
 }
