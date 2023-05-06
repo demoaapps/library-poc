@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
 plugins {
     java
     application
@@ -43,4 +45,8 @@ publishing {
 
 tasks.named<Test>("test") {
     useJUnitPlatform()
+}
+
+tasks.named<BootJar>("bootJar") {
+    archiveFileName.set("example.jar")
 }
